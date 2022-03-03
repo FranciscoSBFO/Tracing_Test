@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Panel de Administración</title>
+    <th:block th:include="/dependences/_HeadInside"></th:block>
+</head>
+<body>
+<!--<body>-->
+<div class="wrapper">
+    <th:block th:include="/dependences/sidebar/_sidebarAdmin"></th:block>
+    <div class="main-panel">
+        <th:block th:include="/dependences/_Header"></th:block>
+        <!--Contenido de página-->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card ">
+                            <div class="card-header ">
+                                <h4 class="card-title">Orden de Servicio del cliente</h4>
+                            </div>
+                            <div class="card-body ">
+
+                                <div class="row">
+                                    <label class="col-sm-2 control-label">Fecha: </label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control datepicker"
+                                                   placeholder="Fecha de envío de muestras"
+                                                   name="fechaOrdenServicio" id="fechaOrdenServicio" required="true">
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-2 control-label">Cliente: </label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <select class="selectpicker" name="empresa" id="empresa" required="true"
+                                                    data-title="Selecciona una empresa..."
+                                                    data-style="btn-default btn-outline"
+                                                    data-menu-style="dropdown-blue">
+                                                <th:block th:object="${empresas}" th:each="item : ${empresas}">
+                                                    <option th:text="${item.nombreRazonSocial}"></option>
+                                                </th:block>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 control-label">¿Requiere asesoría de un experto?: </label>
+                                    <div class="col-sm-4 col-sm-offset-1 checkbox-radios">
+                                        <div class="form-check form-check-radio checkbox-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name="exampleRadio"
+                                                       id="si">
+                                                <span class="form-check-sign"></span>
+                                                Si
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-check-radio checkbox-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name="exampleRadio"
+                                                       id="no">
+                                                <span class="form-check-sign"></span>
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-2 control-label">Personal que lo atiende: </label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+
+                                            <select class="selectpicker" name="nombreJefeCalidad" id="nombreJefeCalidad" required="true"
+                                                    data-title="Selecciona una opción..."
+                                                    data-style="btn-default btn-outline"
+                                                    data-menu-style="dropdown-blue">
+                                                <th:block th:object="${personal}" th:each="item : ${personal}">
+                                                    <option th:text="${item.nombreUsuario}"></option>
+                                                </th:block>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="card-header ">
+                                        <h5 class="card-title">Información de las muestras</h5>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 control-label">Método Solicitado: </label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <select class="selectpicker" name="metodo0" id="metodo0" required="true"
+                                                    data-title="Selecciona un método..."
+                                                    data-style="btn-default btn-outline"
+                                                    data-menu-style="dropdown-blue"
+                                                    onchange="chequeo()">
+                                                <option th:each="item : ${metodos}"
+                                                        th:value="${item.cantidadMuestraEnsayo}"
+                                                        th:text="${item.codigoMetodo}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-2 control-label">Cantidad de Muestra:</label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   name="cantidadMuestra0"
+                                                   id="cantidadMuestra0" required="true" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 control-label">Número de ensayos solicitados: </label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Número de ensayos"
+                                                   name="numeroEnsayos0"
+                                                   id="numeroEnsayos0" required>
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-2 control-label">Descripción de la muestra:</label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   placeholder="Descripción de la Muestra"
+                                                   name="descripcionMuestra0"
+                                                   id="descripcionMuestra0" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 control-label">Observaciones y condiciones especiales:</label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Observaciones"
+                                                   name="observacionesCondiciones0"
+                                                   id="observacionesCondiciones0" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="muestraExtra"></div>
+
+                                <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-default" onclick="agregarMuestra()">
+                                        Agregar otra Muestra
+                                    </button>
+                                </div>
+                                <div class="card-footer ">
+                                    <button type="submit" class="btn btn-fill btn-primary" onclick="valida()">Generar
+                                        Solicitud
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <th:block th:include="/dependences/_Footer"></th:block>
+        </div>
+    </div>
+</div>
+</body>
+<th:block th:include="/dependences/_RequiredScripts"></th:block>
+<script src="../assets/js/actions/ordenServicioCliente.js" type="text/javascript"></script>
+<script>
+    $('#fechaOrdenServicio').datetimepicker({
+        format: 'YYYY-MM-DD',
+        sideBySide: true,
+        icons: {
+            up: "fa fa-chevron-circle-up",
+            down: "fa fa-chevron-circle-down",
+            next: 'fa fa-chevron-circle-right',
+            previous: 'fa fa-chevron-circle-left'
+        }
+    });
+</script>
+</html>

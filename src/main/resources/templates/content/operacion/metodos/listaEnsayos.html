@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Panel de Administración</title>
+    <th:block th:include="/dependences/_HeadInside"></th:block>
+</head>
+<body>
+<div class="wrapper">
+    <th:block th:include="/dependences/sidebar/_sidebarAdmin"></th:block>
+    <div class="main-panel">
+        <th:block th:include="/dependences/_Header"></th:block>
+        <!--Contenido de página-->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2">
+                        <!--                        <button class="btn btn-fill btn-success" onclick="listSolicitudServicio()"><i-->
+                        <!--                                class="fa fa-arrow-circle-left"></i>Volver-->
+                        <!--                        </button>-->
+                        <button class="btn btn-warning" onclick="dashboard()"><i class="fa fa-home"></i>Inicio</button>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card bootstrap-table">
+                            <div class="card-body table-full-width">
+                                <div class="toolbar">
+                                </div>
+                                <table id="listaEnsayos" class="table">
+                                    <thead>
+                                    <th data-field="id" data-sortable="true">ID</th>
+                                    <th data-field="name" data-sortable="true">Nombre</th>
+                                    <th data-field="salary" data-sortable="true">Folio del ensayo</th>
+                                    <th data-field="country" data-sortable="true">Lista</th>
+                                    <th data-field="actions" class="td-actions text-right" data-events="operateEvents"
+                                        data-formatter="operateFormatter">Actions
+                                    </th>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>MET-AT-001</td>
+                                        <td>Determinación de la adhesión de tintas</td>
+                                        <td>[[${folioAT}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAAT()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-DI-002</td>
+                                        <td>Determinación de dimensiones</td>
+                                        <td>[[${folioDI}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRADI()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-ES-003</td>
+                                        <td>Determinación del espesor</td>
+                                        <td>[[${folioES}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAES()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-GR-004</td>
+                                        <td>Determinación del gramaje</td>
+                                        <td>[[${folioGR}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAGR()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-HUM-005</td>
+                                        <td>Determinación de humedad</td>
+                                        <td>[[${folioHUM}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAHUM()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-NCP-006</td>
+                                        <td>Determinación del número de capas en películas</td>
+                                        <td>[[${folioNCP}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRANCP()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-PPG-007</td>
+                                        <td>Determinación de pellets por gramo</td>
+                                        <td>[[${folioPPG}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAPPG()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-FTIR-008</td>
+                                        <td>Determinación de compuestos por espectrometría infrarroja por transformada
+                                            de Fourier FTIR
+                                        </td>
+                                        <td>[[${folioFTIR}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAFTIR()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-TGA-009</td>
+                                        <td>Determinación de compuestos por termogravimetría</td>
+                                        <td>[[${folioTGA}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRATGA()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-ICO-010</td>
+                                        <td>Determinación del índice y densidad óptica de carbonilo por envejecimiento y
+                                            espectroscopía
+                                        </td>
+                                        <td>[[${folioICO}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAICO()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-EAT-011</td>
+                                        <td>Envejecimiento térmico</td>
+                                        <td>[[${folioEAT}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAEAT()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-EAUV-012</td>
+                                        <td>Envejecimiento acelerado por UV</td>
+                                        <td>[[${folioEAUV}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAEAUV()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-EAXE-013</td>
+                                        <td>Envejecimiento acelerado por xenón</td>
+                                        <td>[[${folioEAXE}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAEAXE()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-OIT-014</td>
+                                        <td>Determinación del tiempo de inducción a la oxidación</td>
+                                        <td>[[${folioOIT}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAOIT()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-DSC-015</td>
+                                        <td>Determinación de transiciones térmicas de polímeros</td>
+                                        <td>[[${folioDSC}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRADSC()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-RSC-016</td>
+                                        <td>Determinación de la resistencia del sellado en caliente (Hot tack) de polímeros termoplásticos.</td>
+                                        <td>[[${folioCST}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRARSC()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-IF-017</td>
+                                        <td>Determinación del índice de fluidez</td>
+                                        <td>[[${folioIF}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAIF()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-TTO-018</td>
+                                        <td>Determinación de la tasa de transmisión de oxígeno a través de películas plásticas y láminas usando un sensor coulometrico
+                                        </td>
+                                        <td>[[${folioPO}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRATTO()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-PRR-019</td>
+                                        <td>Determinación a la propagación de la Resistencia al rasgado</td>
+                                        <td>[[${folioPRR}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRAPRR()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-RTER-020</td>
+                                        <td>Determinación de la resistencia a la tensión y elongación a la ruptura</td>
+                                        <td>[[${folioRTER}]]</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="listFRARTER()">
+                                                <span class="btn-label">
+                                                    <i class="fa fa-list-alt"></i>
+                                                </span>
+                                                Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-RCD-021</td>
+                                        <td>Determinación de la resistencia a la carga dinámica</td>
+                                        <td>001</td>
+                                        <td>
+                                            <button class="btn btn-primary"><i class="fa fa-list-alt"></i>Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>MET-RI-022</td>
+                                        <td>Determinación de la resistencia al impacto</td>
+                                        <td>001</td>
+                                        <td>
+                                            <button class="btn btn-primary"><i class="fa fa-list-alt"></i>Ver lista
+                                            </button>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <th:block th:include="/dependences/_Footer"></th:block>
+    </div>
+</div>
+</body>
+<th:block th:include="/dependences/_RequiredScripts"></th:block>
+<script src="../assets/js/actions/urlRedirects.js" type="text/javascript"></script>
+<script src="../assets/js/actions/solicitudServicioCliente.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var $table = $('#listaEnsayos');
+
+    function operateFormatter(value, row, index) {
+        return [
+            '<a rel="tooltip" title="View" class="btn btn-link btn-info table-action view" href="javascript:void(0)">',
+            '<i class="fa fa-image"></i>',
+            '</a>',
+            '<a rel="tooltip" title="Edit" class="btn btn-link btn-warning table-action edit" href="javascript:void(0)">',
+            '<i class="fa fa-edit"></i>',
+            '</a>',
+            '<a rel="tooltip" title="Remove" class="btn btn-link btn-danger table-action remove" href="javascript:void(0)">',
+            '<i class="fa fa-remove"></i>',
+            '</a>'
+        ].join('');
+    }
+
+    $().ready(function () {
+        window.operateEvents = {
+            'click .view': function (e, value, row, index) {
+                info = JSON.stringify(row);
+
+                swal('You click view icon, row: ', info);
+                console.log(info);
+            },
+            'click .edit': function (e, value, row, index) {
+                info = JSON.stringify(row);
+
+                swal('You click edit icon, row: ', info);
+                console.log(info);
+            },
+            'click .remove': function (e, value, row, index) {
+                console.log(row);
+                $table.bootstrapTable('remove', {
+                    field: 'id',
+                    values: [row.id]
+                });
+            }
+        };
+
+        $table.bootstrapTable({
+            toolbar: ".toolbar",
+            clickToSelect: true,
+            showRefresh: true,
+            locale: 'es-MX',
+            search: true,
+            showToggle: true,
+            showColumns: true,
+            pagination: true,
+            searchAlign: 'left',
+            pageSize: 22,
+            clickToSelect: false,
+            pageList: [8, 10, 25, 50, 100],
+
+            formatShowingRows: function (pageFrom, pageTo, totalRows) {
+                //do nothing here, we don't want to show the text "showing x of y from..."
+            },
+            formatRecordsPerPage: function (pageNumber) {
+                return pageNumber + " rows visible";
+            },
+            icons: {
+                refresh: 'fa fa-refresh',
+                toggle: 'fa fa-th-list',
+                columns: 'fa fa-columns',
+                detailOpen: 'fa fa-plus-circle',
+                detailClose: 'fa fa-minus-circle'
+            }
+        });
+
+
+        //activate the tooltips after the data table is initialized
+        $('[rel="tooltip"]').tooltip();
+
+        $(window).resize(function () {
+            $table.bootstrapTable('resetView');
+        });
+
+
+    });
+</script>
+</html>

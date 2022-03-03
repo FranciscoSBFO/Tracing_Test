@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Panel de Administración</title>
+    <th:block th:include="/dependences/_HeadInside"></th:block>
+</head>
+<body>
+<!--<body>-->
+<div class="wrapper">
+    <th:block th:include="/dependences/sidebar/_sidebarAdmin"></th:block>
+    <div class="main-panel">
+        <th:block th:include="/dependences/_Header"></th:block>
+        <!--Contenido de página-->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2">
+                        <!--                        <button class="btn btn-fill btn-success" onclick="listSolicitudServicio()"><i-->
+                        <!--                                class="fa fa-arrow-circle-left"></i>Volver-->
+                        <!--                        </button>-->
+                        <button class="btn btn-warning" onclick="dashboard()"><i class="fa fa-home"></i>Inicio</button>
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <h3 class="card-title">Solicitud de servicio del cliente</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="card-header text-center">
+                                <h4 class="card-title">Información general</h4>
+                            </div>
+                            <div class="card-body ">
+                                <!--Radios de servicio urgente-->
+                                <div class="row">
+                                    <label class="col-sm-6 control-label">Servicio Urgente: </label>
+                                    <div class="col-sm-6 col-sm-offset-1">
+                                        <form id="radioUrgente" class="form-horizontal">
+                                            <div class="form-check form-check-radio checkbox-inline">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio" name="radioNameUrgente"
+                                                           id="radioNameUrgenteSi" value="Si">
+                                                    <span class="form-check-sign"></span>
+                                                    Si
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-radio checkbox-inline">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio" name="radioNameUrgente"
+                                                           id="radioNameUrgenteNo" value="No" checked>
+                                                    <span class="form-check-sign"></span>
+                                                    No
+                                                </label>
+                                            </div>
+                                            <input type="hidden" class="form-control"
+                                                   name="servicioUrgente" id="servicioUrgente" value="No">
+                                        </form>
+                                    </div>
+                                </div>
+                                <!--                                <div class="row">
+                                                                    <label class="col-sm-2 control-label">Fecha de Envío de Muestras</label>
+                                                                    <div class="col-sm-4 col-sm-offset-1">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control datepicker"
+                                                                                   name="fechaEnvioMuestras" id="fechaEnvioMuestras" required="true">
+                                                                        </div>
+                                                                    </div>
+                                                                    <label class="col-sm-2 control-label">Fecha de Pago</label>
+                                                                    <div class="col-sm-4 col-sm-offset-1">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control datepicker"
+                                                                                   name="fechaPago" id="fechaPago" required="true">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>-->
+
+                                <!--Radios de almacenamiento especial-->
+                                <div class="row">
+                                    <!--                                    <label class="col-sm-2 control-label">Nombre y Firma de Quién Envía las
+                                                                            Muestras</label>
+                                                                        <div class="col-sm-4 col-sm-offset-1">
+                                                                            <div class="form-group">
+                                                                                <input type="text" class="form-control"
+                                                                                       name="nombreFirmaEmisor" id="nombreFirmaEmisor" required="true">
+                                                                            </div>
+                                                                        </div>-->
+                                    <label class="col-sm-6 control-label">¿Las muestras requieren un almacenamiento
+                                        especial?</label>
+                                    <div class="col-sm-6 col-sm-offset-1">
+                                        <form id="radioEspecial" class="form-horizontal">
+                                            <div class="form-check form-check-radio checkbox-inline">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="radioNameEspecial" id="radioNameEspecialSi" value="Si">
+                                                    <span class="form-check-sign"></span>
+                                                    Si
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-radio checkbox-inline">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="radioNameEspecial" id="radioNameEspecialNo" value="No"
+                                                           checked>
+                                                    <span class="form-check-sign"></span>
+                                                    No
+                                                </label>
+                                            </div>
+                                            <input type="hidden" class="form-control"
+                                                   name="almacenamientoEspecial" id="almacenamientoEspecial" value="No">
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <!--Input pecifique-->
+                                <div class="row">
+                                    <label class="col-sm-6 control-label">Especifique: </label>
+                                    <div class="col-sm-6 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   name="especifique" id="especifique" required="true" value="N/A"
+                                                   disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Selector de clientes-->
+                                <div class="row">
+                                    <label class="col-sm-6 control-label">Cliente: </label>
+                                    <div class="col-sm-6 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <select class="selectpicker" name="empresa" id="empresa" required="true"
+                                                    data-title="Selecciona una empresa..."
+                                                    data-style="btn-default btn-outline"
+                                                    data-menu-style="dropdown-blue">
+                                                <option th:each="item : ${empresas}"
+                                                        th:value="${item.clientId}"
+                                                        th:text="${item.nombreRazonSocial}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                <div class="row">
+                                                                    <label class="col-sm-2 control-label">Fecha de Recepción de Muestras</label>
+                                                                    <div class="col-sm-4 col-sm-offset-1">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control datepicker"
+                                                                                   name="fechaRecepcionMuestras" id="fechaRecepcionMuestras" required="true">
+                                                                        </div>
+                                                                    </div>
+                                                                    <label class="col-sm-2 control-label">Fecha compromiso entrega de resultados</label>
+                                                                    <div class="col-sm-4 col-sm-offset-1">
+                                                                        <div class="form-group">
+                                                                            <input type="text" class="form-control datepicker"
+                                                                                   name="fechaCompromisoEntrega" id="fechaCompromisoEntrega" required="true">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>-->
+
+                                <!--Input de receptor-->
+                                <div class="row">
+                                    <label class="col-sm-6 control-label">Nombre y firma de quien recibe las
+                                        muestras:</label>
+                                    <div class="col-sm-6 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   name="nombreFirmaReceptor" id="nombreFirmaReceptor" required="true">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--Input de control de calidad-->
+                                <div class="row">
+                                    <label class="col-sm-6 control-label">Nombre y firma del jefe de control de
+                                        calidad:</label>
+                                    <div class="col-sm-6 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   name="nombreFirmaCalidad" id="nombreFirmaCalidad" required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="card-header text-center">
+                                <h4 class="card-title">Cantidad de muestras a registrar</h4>
+                            </div>
+                            <div class="card-body ">
+                                <div class="row">
+                                    <label class="col-sm-6 control-label">Cantidad de muestras a registrar: </label>
+                                    <div class="col-sm-6 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control"
+                                                   name="cantidadMuestras" id="cantidadMuestras" required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button type="submit" class="btn btn-fill btn-success" onclick="agregarMuestra()"><i
+                                        class="fa fa-plus-circle"></i>Aplicar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="muestraExtra">
+
+                </div>
+                <!--<div class="row">
+                    <div class="col-md-12">
+                        <div class="card ">
+                            <div class="card-header text-center">
+                                <h4 class="card-title">Información de la muestra 1</h4>
+                            </div>
+                            <div class="card-body ">
+                                <div class="row">
+                                    <label class="col-sm-2 control-label">ID cliente de la muestra:</label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   name="idClienteMuestra0" id="idClienteMuestra0" required="true">
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-2 control-label">Tipo de muestra:</label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   name="tipoMuestra0" id="tipoMuestra0" required="true">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 control-label">Descripción de la muestra:</label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   name="descripcionMuestra0" id="descripcionMuestra0" required="true">
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-2 control-label">Método Solicitado:</label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <select multiple class="selectpicker" name="metodo0" id="metodo0"
+                                                    required="required"
+                                                    data-title="Selecciona un método..."
+                                                    data-style="btn-info btn-fill btn-block"
+                                                    data-menu-style="dropdown-blue"
+                                                    onchange="chequeo()">
+                                                &lt;!&ndash;<select class="selectpicker" name="metodo0" id="metodo0" required=required
+                                                        data-title="Selecciona un método..."
+                                                        data-style="btn-default btn-outline"
+                                                        data-menu-style="dropdown-blue"
+                                                        onchange="chequeo()">&ndash;&gt;
+                                                <option th:each="item : ${metodos}"
+                                                        th:value="${item.methodId}"
+                                                        th:text="${item.codigoMetodo}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 control-label">Lote:</label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   name="lote0" id="lote0" required="true">
+                                        </div>
+                                    </div>
+                                    <label class="col-sm-2 control-label">Condiciones Especiales:</label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   name="condicionesEspeciales0" id="condicionesEspeciales0"
+                                                   required="true">
+                                        </div>
+                                    </div>
+                                    &lt;!&ndash;<label class="col-sm-2 control-label">Cantidad de Muestra:</label>&ndash;&gt;
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control"
+                                                   name="cantidadMuestra0"
+                                                   id="cantidadMuestra0" required="true" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <label class="col-sm-2 control-label">Observaciones: </label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control"
+                                                   name="observaciones0" id="observaciones0" required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center"></div>
+                        </div>
+                    </div>
+                </div>-->
+                <!--<div class="row">
+                    <div class="col-md-12">
+                        <div class="card ">
+                            <div class="card-header text-center">
+                                <h4 class="card-title">Datos finales</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <label class="col-sm-8 control-label">Favor de responder si requiere devolución de
+                                        las muestras analizadas: </label>
+                                    <div class="col-sm-4 col-sm-offset-1">
+                                        <form id="radioMuestras" class="form-horizontal">
+                                            <div class="form-check form-check-radio checkbox-inline">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="radioNameMuestras" id="radioNameMuestrasSi" value="Si">
+                                                    <span class="form-check-sign"></span>
+                                                    Si
+                                                </label>
+                                            </div>
+                                            <div class="form-check form-check-radio checkbox-inline">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="radioNameMuestras" id="radioNameMuestrasNo" value="No"
+                                                           checked>
+                                                    <span class="form-check-sign"></span>
+                                                    No
+                                                </label>
+                                            </div>
+                                            <input type="hidden" class="form-control"
+                                                   name="devolucionMuestras" id="devolucionMuestras" value="No">
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <br>
+                                <br>
+
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <p class="text-muted">
+                                            En caso de ser afirmativa la respuesta se le informa que las muestras a
+                                            devolver se cobrará gastos de envío.
+                                        </p>
+                                        <p class="text-danger">
+                                            Nota: La mayoría de los ensayos son destructivos.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button type="submit" class="btn btn-fill btn-primary" onclick="valida()"><i
+                                        class="fa fa-floppy-o"></i>Registrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <th:block th:include="/dependences/_Footer"></th:block>
+    </div>
+</div>
+</body>
+<script src="../assets/js/actions/solicitudServicioCliente.js" type="text/javascript"></script>
+<th:block th:include="/dependences/_RequiredScripts"></th:block>
+<script>
+    $('#fechaEnvioMuestras').datetimepicker({
+        format: 'YYYY-MM-DD',
+        sideBySide: true,
+        icons: {
+            up: "fa fa-chevron-circle-up",
+            down: "fa fa-chevron-circle-down",
+            next: 'fa fa-chevron-circle-right',
+            previous: 'fa fa-chevron-circle-left'
+        }
+    });
+    $('#fechaPago').datetimepicker({
+        format: 'YYYY-MM-DD',
+        sideBySide: true,
+        icons: {
+            up: "fa fa-chevron-circle-up",
+            down: "fa fa-chevron-circle-down",
+            next: 'fa fa-chevron-circle-right',
+            previous: 'fa fa-chevron-circle-left'
+        }
+    });
+    $('#fechaRecepcionMuestra').datetimepicker({
+        format: 'YYYY-MM-DD',
+        sideBySide: true,
+        icons: {
+            up: "fa fa-chevron-circle-up",
+            down: "fa fa-chevron-circle-down",
+            next: 'fa fa-chevron-circle-right',
+            previous: 'fa fa-chevron-circle-left'
+        }
+    });
+    $('#fechaCompromisoEntregaResultados').datetimepicker({
+        format: 'YYYY-MM-DD',
+        sideBySide: true,
+        icons: {
+            up: "fa fa-chevron-circle-up",
+            down: "fa fa-chevron-circle-down",
+            next: 'fa fa-chevron-circle-right',
+            previous: 'fa fa-chevron-circle-left'
+        }
+    });
+    $('#fechaOrdenServicio').datetimepicker({
+        format: 'YYYY-MM-DD',
+        sideBySide: true,
+        icons: {
+            up: "fa fa-chevron-circle-up",
+            down: "fa fa-chevron-circle-down",
+            next: 'fa fa-chevron-circle-right',
+            previous: 'fa fa-chevron-circle-left'
+        }
+    });
+    $('#fechaRecepcionMuestras').datetimepicker({
+        format: 'YYYY-MM-DD',
+        sideBySide: true,
+        icons: {
+            up: "fa fa-chevron-circle-up",
+            down: "fa fa-chevron-circle-down",
+            next: 'fa fa-chevron-circle-right',
+            previous: 'fa fa-chevron-circle-left'
+        }
+    });
+    $('#fechaCompromisoEntrega').datetimepicker({
+        format: 'YYYY-MM-DD',
+        sideBySide: true,
+        icons: {
+            up: "fa fa-chevron-circle-up",
+            down: "fa fa-chevron-circle-down",
+            next: 'fa fa-chevron-circle-right',
+            previous: 'fa fa-chevron-circle-left'
+        }
+    });
+
+    $('#radioEspecial input').on('change', function () {
+        var discounted = document.getElementById('especifique');
+        document.getElementById("almacenamientoEspecial").value = $('input[name=radioNameEspecial]:checked', '#radioEspecial').val();
+        if ($('input[name=radioNameEspecial]:checked', '#radioEspecial').val() === "Si") {
+            document.getElementById("especifique").disabled = false;
+            document.getElementById("especifique").value = "";
+        } else if ($('input[name=radioNameEspecial]:checked', '#radioEspecial').val() === "No") {
+            document.getElementById("especifique").disabled = true;
+            document.getElementById("especifique").value = "N/A";
+        }
+    });
+
+    $('#radioUrgente input').on('change', function () {
+        document.getElementById("servicioUrgente").value = $('input[name=radioNameUrgente]:checked', '#radioUrgente').val();
+    });
+
+    $('#radioMuestras input').on('change', function () {
+        document.getElementById("devolucionMuestras").value = $('input[name=radioNameMuestras]:checked', '#radioMuestras').val();
+    });
+</script>
+</html>
